@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Export-Package: edu.unseen.osgi.enhancer;version="1.0.0.SNAPSHOT"
+Private-Package: edu.unseen.osgi.enhancer,
+Built-By: tosho
+Tool: Bnd-0.0.311
+Bundle-Name: Unnamed - edu.unseen.osgi:classload.enhancer:jar:1.0-SNAP
+ SHOT
+Created-By: Apache Maven Bundle Plugin
+Bundle-Version: 1.0.0.SNAPSHOT
+Build-Jdk: 1.6.0_11
+Bnd-LastModified: 1250086293487
+Bundle-ManifestVersion: 2
+Import-Package: edu.unseen.osgi.enhancer;version="1.0"
+Bundle-SymbolicName: edu.unseen.osgi.classload.enhancer
+
