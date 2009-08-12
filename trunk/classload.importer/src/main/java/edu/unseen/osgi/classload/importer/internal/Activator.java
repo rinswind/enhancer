@@ -21,7 +21,7 @@ public class Activator implements BundleActivator {
     /* Build a class load bridge on top of this bundles class loader */
     ClassLoader local = getClass().getClassLoader();
     Namer namer = Namers.suffixNamer("__proxy__");
-    PassthroughGenerator generator = new PassthroughGenerator();
+    LoggingGenerator generator = new LoggingGenerator();
     Enhancer enhancer = new Enhancer(local, namer, generator);
     
     /* Make a proxy class */
@@ -36,7 +36,7 @@ public class Activator implements BundleActivator {
     ClassLoader local = getClass().getClassLoader();
     String inputName = Goodbie.class.getName();
     String outputName = inputName + "$__broken__";
-    byte[] raw = new PassthroughGenerator().generate(inputName, outputName, local);
+    byte[] raw = new LoggingGenerator().generate(inputName, outputName, local);
     
     /* Must reach with reflection - defineClass is protected */
     Method meth = ClassLoader.class.getDeclaredMethod(
