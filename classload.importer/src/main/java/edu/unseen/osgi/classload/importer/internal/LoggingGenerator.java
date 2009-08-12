@@ -30,8 +30,8 @@ import org.objectweb.asm.Type;
 
 import edu.unseen.osgi.enhancer.Generator;
 
-public class PassthroughGenerator implements Generator {
-  private static String INTERNAL = PassthroughGenerator.class.getPackage().getName();
+public class LoggingGenerator implements Generator {
+  private static String INTERNAL = LoggingGenerator.class.getPackage().getName();
   
   private final String DELEGATE = "delegate";
   
@@ -100,7 +100,7 @@ public class PassthroughGenerator implements Generator {
     
     /* Dump "proxies on the screen */
     mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-    mv.visitLdcInsn("proxied");
+    mv.visitLdcInsn("entry " + method);
     mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V");
     
     /* Load delegate */

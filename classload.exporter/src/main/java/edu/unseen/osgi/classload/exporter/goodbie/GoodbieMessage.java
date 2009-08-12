@@ -1,5 +1,6 @@
 package edu.unseen.osgi.classload.exporter.goodbie;
 
-public class GoodbieMessage {
+import edu.unseen.osgi.classload.exporter.hello.HelloMessage;
 
+public interface GoodbieMessage extends HelloMessage {
 }
