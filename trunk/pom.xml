@@ -16,6 +16,7 @@
 		<module>examples.importer</module>
     <module>examples.exporter</module>
     <module>examples.generator.aop</module>
+    <module>examples.importer.broken</module>
   </modules>
 
 	<dependencies>
