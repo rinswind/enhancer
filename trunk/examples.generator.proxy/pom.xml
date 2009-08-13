@@ -5,21 +5,22 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	
-	<parent>
-		<groupId>enhancer</groupId>
-		<artifactId>enhancer</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
+  <parent>
+    <groupId>enhancer</groupId>
+    <artifactId>bundle</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom-bundle.xml</relativePath>
+  </parent>
 
 	<groupId>enhancer</groupId>
-	<artifactId>examples.generator.sproxy</artifactId>
+	<artifactId>examples.generator.proxy</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<name>examples.generator.sproxy</name>
   
   <properties>
-    <Private-Package>org.objectweb.asm.*, enhancer.examples.generator.sproxy.internal</Private-Package>
-    <Export-Package>enhancer.examples.generator.sproxy;version=${version}</Export-Package>
+    <Private-Package>enhancer.examples.generator.proxy.internal</Private-Package>
+    <Export-Package>enhancer.examples.generator.proxy;version=${version}</Export-Package>
   </properties>
   
 	<dependencies>
@@ -29,7 +30,7 @@
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>asm</groupId>
+			<groupId>enhancer</groupId>
 			<artifactId>asm</artifactId>
 			<version>3.2</version>
 		</dependency>

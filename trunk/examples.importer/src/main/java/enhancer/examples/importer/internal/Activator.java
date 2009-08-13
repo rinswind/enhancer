@@ -5,7 +5,7 @@ import org.osgi.framework.BundleContext;
 
 import enhancer.examples.exporter.goodbye.Goodbye;
 import enhancer.examples.generator.aop.Logging;
-import enhancer.examples.generator.sproxy.ServiceProxies;
+import enhancer.examples.generator.proxy.ServiceProxies;
 
 public class Activator implements BundleActivator {
   public void start(BundleContext bc) throws Exception {

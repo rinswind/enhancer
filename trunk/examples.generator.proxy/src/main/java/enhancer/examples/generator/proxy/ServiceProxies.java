@@ -1,8 +1,8 @@
-package enhancer.examples.generator.sproxy;
+package enhancer.examples.generator.proxy;
 
 import enhancer.Enhancer;
 import enhancer.Namers;
-import enhancer.examples.generator.sproxy.internal.ServiceProxyGenerator;
+import enhancer.examples.generator.proxy.internal.ServiceProxyGenerator;
 
 public final class ServiceProxies {
   /* Static utility */

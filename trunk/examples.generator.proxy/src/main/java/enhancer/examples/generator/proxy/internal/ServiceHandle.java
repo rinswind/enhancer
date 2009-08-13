@@ -1,4 +1,4 @@
-package enhancer.examples.generator.sproxy.internal;
+package enhancer.examples.generator.proxy.internal;
 
 import static org.osgi.framework.Constants.OBJECTCLASS;
 import static org.osgi.framework.ServiceEvent.UNREGISTERING;
