@@ -6,10 +6,8 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import enhancer.Enhancer;
-import enhancer.Namer;
-import enhancer.Namers;
 import enhancer.examples.exporter.goodbye.Goodbye;
+import enhancer.examples.generator.aop.Logging;
 import enhancer.examples.generator.aop.LoggingGenerator;
 
 public class Activator implements BundleActivator {
@@ -19,14 +17,8 @@ public class Activator implements BundleActivator {
   }
 
   private void tryBridgeLoader(BundleContext bc) throws Exception {
-    /* Build a class load bridge on top of this bundles class loader */
-    ClassLoader local = getClass().getClassLoader();
-    Namer namer = Namers.suffixNamer("__proxy__");
-    LoggingGenerator generator = new LoggingGenerator();
-    Enhancer enhancer = new Enhancer(local, namer, generator);
-    
     /* Make a proxy class */
-    Class<Goodbye> proxyClass = enhancer.enhance(Goodbye.class);
+    Class<Goodbye> proxyClass = Logging.withLogging(Goodbye.class);
     
     /* Drive it */
     driveProxy(bc, proxyClass);
