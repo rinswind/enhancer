@@ -5,8 +5,9 @@
   
   <parent>
     <groupId>enhancer</groupId>
-    <artifactId>enhancer</artifactId>
+    <artifactId>bundle</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom-bundle.xml</relativePath>
   </parent>
   
   <groupId>enhancer</groupId>

@@ -4,11 +4,12 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<parent>
-		<groupId>enhancer</groupId>
-    <artifactId>enhancer</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
+  <parent>
+    <groupId>enhancer</groupId>
+    <artifactId>bundle</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom-bundle.xml</relativePath>
+  </parent>
 	
 	<groupId>enhancer</groupId>
 	<artifactId>enhancer.lib</artifactId>

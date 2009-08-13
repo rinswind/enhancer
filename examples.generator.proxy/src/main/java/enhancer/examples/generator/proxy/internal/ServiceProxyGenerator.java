@@ -1,4 +1,4 @@
-package enhancer.examples.generator.sproxy.internal;
+package enhancer.examples.generator.proxy.internal;
 
 import static org.objectweb.asm.ClassWriter.COMPUTE_FRAMES;
 import static org.objectweb.asm.ClassWriter.COMPUTE_MAXS;
