@@ -2,23 +2,23 @@ package enhancer.examples.importer.internal;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
 
 import enhancer.examples.exporter.goodbye.Goodbye;
 import enhancer.examples.generator.aop.Logging;
+import enhancer.examples.generator.sproxy.ServiceProxies;
 
 public class Activator implements BundleActivator {
   public void start(BundleContext bc) throws Exception {
-    /* Get a raw object */
-    ServiceReference ref = bc.getServiceReference(Goodbye.class.getName());
-    Goodbye delegate = (Goodbye) bc.getService(ref);
+    /* Build a service proxy */
+    Class<Goodbye> serviceProxyClass = ServiceProxies.serviceProxy(Goodbye.class);
+    Goodbye serviceProxy = serviceProxyClass.getConstructor(BundleContext.class).newInstance(bc);
     
     /* Wrap it in a logging proxy */
-    Class<Goodbye> proxyClass = Logging.withLogging(Goodbye.class);
-    Goodbye proxy = proxyClass.getConstructor(Goodbye.class).newInstance(delegate);
+    Class<Goodbye> logProxyClass = Logging.withLogging(Goodbye.class);
+    Goodbye logProxy = logProxyClass.getConstructor(Goodbye.class).newInstance(serviceProxy);
     
-    /* Drive it */
-    System.out.println(proxy.goodbie("importer"));
+    /* Drive the proxy stack */
+    System.out.println(logProxy.goodbie("importer"));
   }
 
   public void stop(BundleContext bc) throws Exception {

@@ -17,6 +17,7 @@
     <module>examples.exporter</module>
     <module>examples.generator.aop</module>
     <module>examples.importer.broken</module>
+    <module>examples.generator.sproxy</module>
   </modules>
 
 	<dependencies>
