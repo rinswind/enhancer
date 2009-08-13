@@ -13,11 +13,9 @@
   <artifactId>examples.importer</artifactId>
   <version>1.0-SNAPSHOT</version>
   
+  <name>examples.importer</name>
+  
   <properties>
-    <Private-Package>
-      org.objectweb.asm.*,
-      enhancer.examples.importer.internal
-    </Private-Package>
     <Bundle-Activator>enhancer.examples.importer.internal.Activator</Bundle-Activator>
   </properties>
   
@@ -29,13 +27,8 @@
     </dependency>
     <dependency>
       <groupId>enhancer</groupId>
-      <artifactId>enhancer.lib</artifactId>
+      <artifactId>examples.generator.aop</artifactId>
       <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>asm</groupId>
-      <artifactId>asm</artifactId>
-      <version>3.2</version>
     </dependency>
   </dependencies>
 </project>

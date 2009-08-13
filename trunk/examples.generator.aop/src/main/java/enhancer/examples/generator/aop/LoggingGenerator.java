@@ -1,4 +1,4 @@
-package enhancer.examples.importer.internal;
+package enhancer.examples.generator.aop;
 
 import static org.objectweb.asm.ClassWriter.COMPUTE_FRAMES;
 import static org.objectweb.asm.ClassWriter.COMPUTE_MAXS;
