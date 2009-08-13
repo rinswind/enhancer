@@ -9,12 +9,13 @@
 
 	<packaging>pom</packaging>
 
-	<name>classload</name>
+	<name>enhancer</name>
 
 	<modules>
 		<module>enhancer.lib</module>
 		<module>examples.importer</module>
     <module>examples.exporter</module>
+    <module>examples.generator.aop</module>
   </modules>
 
 	<dependencies>

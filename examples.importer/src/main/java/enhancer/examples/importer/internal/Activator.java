@@ -10,6 +10,7 @@ import enhancer.Enhancer;
 import enhancer.Namer;
 import enhancer.Namers;
 import enhancer.examples.exporter.goodbye.Goodbye;
+import enhancer.examples.generator.aop.LoggingGenerator;
 
 public class Activator implements BundleActivator {
   public void start(BundleContext context) throws Exception {
