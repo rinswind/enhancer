@@ -37,7 +37,7 @@ public class Activator implements BundleActivator {
       }
 
       @Override
-      public GoodbyeMessage goodbie(final String who) {
+      public GoodbyeMessage goodbye(final String who) {
         return new GoodbyeMessage() {
           @Override
           public String toString() {

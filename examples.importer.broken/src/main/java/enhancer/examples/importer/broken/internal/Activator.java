@@ -60,7 +60,7 @@ public class Activator implements BundleActivator {
      * if we generate on top of the local loader or the bridge because both will
      * see enough classes to link the generated proxy.
      */
-    System.out.println(proxy.goodbie("importer"));
+    System.out.println(proxy.goodbye("importer"));
   }
 
   public void stop(BundleContext bc) throws Exception {

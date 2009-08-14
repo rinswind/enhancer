@@ -38,7 +38,12 @@ public final class Logging {
       Namers.suffixNamer("__logging__"), 
       new LoggingGenerator());
 
-  public static <T> Class<T> withLogging(Class<T> target) throws ClassNotFoundException {
-    return enhancer.enhance(target);
+  public static <T> T withLogging(Class<T> iface, T target) {
+    try {
+      Class<T> wrapperClass = enhancer.enhance(iface);
+      return (T) wrapperClass.getConstructor(iface).newInstance(target);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 }
