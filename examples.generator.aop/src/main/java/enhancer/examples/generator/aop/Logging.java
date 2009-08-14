@@ -38,7 +38,17 @@ public final class Logging {
       Namers.suffixNamer("__logging__"), 
       new LoggingGenerator());
 
-  public static <T> T withLogging(Class<T> iface, T target) {
+  /**
+   * Applies a logging aspect to an object.
+   * 
+   * @param <T> interface who's methods we want to capture and log.
+   * @param <P> type of the object that we will wrap.
+   * @param iface type token for <T> to counter erasure.
+   * @param target the object we will be wrapping.
+   * @return the passe object wrapped in a proxy that logs the calls to the
+   *         passed interface.
+   */
+  public static <T, P extends T> T withLoggingFor(Class<T> iface, P target) {
     try {
       Class<T> wrapperClass = enhancer.enhance(iface);
       return (T) wrapperClass.getConstructor(iface).newInstance(target);

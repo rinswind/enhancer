@@ -15,7 +15,7 @@
  */
 package enhancer.examples.importer.internal;
 
-import static enhancer.examples.generator.aop.Logging.withLogging;
+import static enhancer.examples.generator.aop.Logging.withLoggingFor;
 import static enhancer.examples.generator.proxy.Services.service;
 
 import org.osgi.framework.BundleActivator;
@@ -27,26 +27,24 @@ public class Activator implements BundleActivator {
   public void start(BundleContext bc) throws Exception {
     /*
      * Build a proxy stack that will track a service and also dump what is going
-     * on on the console:
-     * 
-     * 1) wrap BundleContext in a logging aspect.
-     * 
-     * 2) build a service tracking proxy on top.
-     * 
-     * 3) wrap the proxy in a logging aspect as well.
-     * 
-     * Here we have two class load bridges playing together: one per generator.
-     * It appears like we stack one bridge on top of the other but in fact we
-     * bridge the owner of the Goodbye class twice. The reason we can't stack
-     * bridges is that the generators do not support enhancement of classes. For
-     * this reason we must pass to the logging generator an interface through,
-     * which we want to see the wrapped object.
+     * on on the console. Here we have two class load bridges playing together:
+     * one per generator. It appears like we stack one bridge on top of the
+     * other but in fact we bridge the owner of the Goodbye class twice. The
+     * reason we can't stack bridges is that the generators do not support
+     * enhancement of classes. For this reason we must pass to the logging
+     * generator an interface who's methods we want to log and an object that
+     * implements that interface.
      */
-    Goodbye stacked = 
-      withLogging(Goodbye.class, service(Goodbye.class, withLogging(BundleContext.class, bc)));
+
+    /* Wrap BundleContext in a logging aspect */
+    BundleContext loggedBc = withLoggingFor(BundleContext.class, bc);
+    /* Build a service tracker on top */
+    Goodbye trackedGoodbye = service(Goodbye.class, loggedBc);
+    /* Wrap the service tracker a logging aspect */
+    Goodbye loggedTrackedGoodbye = withLoggingFor(Goodbye.class, trackedGoodbye);
 
     /* Drive the proxy stack */
-    System.out.println(stacked.goodbye("importer"));
+    System.out.println(loggedTrackedGoodbye.goodbye("importer"));
   }
 
   public void stop(BundleContext bc) throws Exception {
