@@ -16,7 +16,7 @@
 	<artifactId>examples.generator.proxy</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>examples.generator.sproxy</name>
+	<name>examples.generator.proxy</name>
   
   <properties>
     <Private-Package>enhancer.examples.generator.proxy.internal</Private-Package>
