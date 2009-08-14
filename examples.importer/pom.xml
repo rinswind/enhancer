@@ -33,7 +33,7 @@
     </dependency>
     <dependency>
       <groupId>enhancer</groupId>
-      <artifactId>examples.generator.sproxy</artifactId>
+      <artifactId>examples.generator.proxy</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
