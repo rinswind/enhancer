@@ -25,17 +25,25 @@ public final class Services {
   /* Static utility */
   private Services() {
   }
-  
+
   /**
    * Build an Enhancer on top of the current class space. E.g. the class space
    * of the bundle where this class is packaged. The created proxy classes will
    * have a suffix "$__service_proxy__".
    */
   private static final Enhancer enhancer = new Enhancer(
-    Services.class.getClassLoader(), 
-    Namers.suffixNamer("__service_proxy__"), 
-    new ServiceProxyGenerator());
+      Services.class.getClassLoader(), 
+      Namers.suffixNamer("__service_proxy__"), 
+      new ServiceProxyGenerator());
 
+  /**
+   * Builds a service tracker.
+   * 
+   * @param <T> type of the tracked service.
+   * @param target type token for T to fight erasure.
+   * @param bc context to use for the tracking.
+   * @return a proxy implementing T that tracks a dynamic service T.
+   */
   public static <T> T service(Class<T> target, BundleContext bc) {
     try {
       Class<T> wrapperClass = enhancer.enhance(target);
