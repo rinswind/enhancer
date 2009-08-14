@@ -15,25 +15,38 @@
  */
 package enhancer.examples.importer.internal;
 
+import static enhancer.examples.generator.aop.Logging.withLogging;
+import static enhancer.examples.generator.proxy.Services.service;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 import enhancer.examples.exporter.goodbye.Goodbye;
-import enhancer.examples.generator.aop.Logging;
-import enhancer.examples.generator.proxy.ServiceProxies;
 
 public class Activator implements BundleActivator {
   public void start(BundleContext bc) throws Exception {
-    /* Build a service proxy */
-    Class<Goodbye> serviceProxyClass = ServiceProxies.serviceProxy(Goodbye.class);
-    Goodbye serviceProxy = serviceProxyClass.getConstructor(BundleContext.class).newInstance(bc);
-    
-    /* Wrap it in a logging proxy */
-    Class<Goodbye> logProxyClass = Logging.withLogging(Goodbye.class);
-    Goodbye logProxy = logProxyClass.getConstructor(Goodbye.class).newInstance(serviceProxy);
-    
+    /*
+     * Build a proxy stack that will track a service and also dump what is going
+     * on on the console:
+     * 
+     * 1) wrap BundleContext in a logging aspect.
+     * 
+     * 2) build a service tracking proxy on top.
+     * 
+     * 3) wrap the proxy in a logging aspect as well.
+     * 
+     * Here we have two class load bridges playing together: one per generator.
+     * It appears like we stack one bridge on top of the other but in fact we
+     * bridge the owner of the Goodbye class twice. The reason we can't stack
+     * bridges is that the generators do not support enhancement of classes. For
+     * this reason we must pass to the logging generator an interface through,
+     * which we want to see the wrapped object.
+     */
+    Goodbye stacked = 
+      withLogging(Goodbye.class, service(Goodbye.class, withLogging(BundleContext.class, bc)));
+
     /* Drive the proxy stack */
-    System.out.println(logProxy.goodbie("importer"));
+    System.out.println(stacked.goodbye("importer"));
   }
 
   public void stop(BundleContext bc) throws Exception {
