@@ -67,7 +67,7 @@ public class Enhancer {
     return new ClassLoader(appSpace) {
       @Override
       public String toString() {
-        return "BridgeClassLoader[ " + appSpace + ", " + privateSpace + " ]";
+        return "BridgeClassLoader[ app: " + appSpace + ", private: " + privateSpace + " ]";
       }
 
       @Override

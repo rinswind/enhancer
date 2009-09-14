@@ -17,6 +17,7 @@ package enhancer.examples.generator.aop;
 
 import enhancer.Enhancer;
 import enhancer.Namers;
+import enhancer.examples.generator.aop.internal.LoggingGenerator;
 
 /**
  * Generates primitive logging wrappers over a Java interface.

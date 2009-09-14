@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import enhancer.examples.exporter.goodbye.Goodbye;
-import enhancer.examples.generator.aop.LoggingGenerator;
+import enhancer.examples.generator.aop.internal.LoggingGenerator;
 
 public class Activator implements BundleActivator {
   public void start(BundleContext bc) throws Exception {

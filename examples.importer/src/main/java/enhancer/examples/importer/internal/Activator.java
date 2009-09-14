@@ -33,17 +33,26 @@ public class Activator implements BundleActivator {
      * reason we can't stack bridges is that the generators do not support
      * enhancement of classes. For this reason we must pass to the logging
      * generator an interface who's methods we want to log and an object that
-     * implements that interface.
+     * implements that interface. Likewise we pass to the tracker generator the
+     * interface of the service we want to track.
      */
 
-    /* Wrap BundleContext in a logging aspect */
+    System.out.println("----- Build proxy stack ------");
+    
+    /* Wrap BundleContext in the logging aspect */
     BundleContext loggedBc = withLoggingFor(BundleContext.class, bc);
+    System.out.println("Generated: " + loggedBc.getClass());
+    
     /* Build a service tracker on top */
     Goodbye trackedGoodbye = service(Goodbye.class, loggedBc);
-    /* Wrap the service tracker a logging aspect */
+    System.out.println("Generated: " + trackedGoodbye.getClass());
+    
+    /* Wrap the service tracker in the logging aspect */
     Goodbye loggedTrackedGoodbye = withLoggingFor(Goodbye.class, trackedGoodbye);
+    System.out.println("Generated: " + loggedTrackedGoodbye.getClass());
 
     /* Drive the proxy stack */
+    System.out.println("----- Drive proxy stack ------");
     System.out.println(loggedTrackedGoodbye.goodbye("importer"));
   }
 
